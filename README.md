@@ -61,6 +61,12 @@ Run Server
 npm run dev
 ```
 
+## Gitpod Configuration
+
+create [.gitpot.yml](.gitpot.yml)
+
+gitpod yml docs [he  re!](https://www.gitpod.io/docs/config-gitpod-file)
+
 ## Create new Endpoint
 
 - in [src/routes](src/routes)
