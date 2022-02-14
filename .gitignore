@@ -1,0 +1,18 @@
+*.class
+bin/
+build/
+out/
+.env
+.DS_[Ss]tore
+*.log
+# IDE files
+.idea
+*.iml
+*.ctxt
+package.bluej
+.classpath
+classpath
+.settings
+.project
+.nbproject
+.vscode
