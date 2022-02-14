@@ -2,5 +2,10 @@
 # IDE files
 .vscode
 # Framework
-/node_modules/
-/public/build/
+node_modules
+/build
+/.svelte-kit
+/package
+.env
+.env.*
+!.env.example

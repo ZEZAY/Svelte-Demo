@@ -1,6 +1,6 @@
 # Svelte Demo - Todo App
 
-This project is a todo application. Also tutorial for Svelte framework.
+This project is a todo application. Also tutorial for SvelteKit framework.
 
 video course: [Full Stack Web Development in the Cloud](https://youtu.be/OUzaUJ3gEug)
 
@@ -42,7 +42,16 @@ The web application and API are hosted on [Vercel](https://vercel.com/) whereas 
 ## Setup
 
 ```bash
-npx degit sveltejs/template .
+# initial SvelteKit framework project
+npm init svelte@next .
+# choose:
+# Skeleton project
+# TypeScript -> Yes
+# ESLint -> No
+# Prettier -> No
+```
+
+```bash
 npm install
 ```
 
