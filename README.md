@@ -1,4 +1,6 @@
-# Full Stack Web Development in the Cloud
+# Svelte Demo - Todo App
+
+This project is a todo application. Also tutorial for Svelte framework.
 
 video course: [Full Stack Web Development in the Cloud](https://youtu.be/OUzaUJ3gEug)
 
@@ -36,3 +38,16 @@ The course leverages the following technologies
 **Deployment**
 
 The web application and API are hosted on [Vercel](https://vercel.com/) whereas the database lives on [Railway](https://railway.app/).
+
+## Setup
+
+```bash
+npx degit sveltejs/template .
+npm install
+```
+
+Run Server
+
+```bash
+npm run dev
+```
