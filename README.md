@@ -127,3 +127,13 @@ given %svelte.head% in app.html, then in [routes/index.svelte](src/routes/index.
 <!-- use variable -->
 <h1>{title}</h1>
 ```
+
+### Stylesheet
+
+- create css file, then import in script
+- to apply to every svelte files in routes
+  - create [routes/\_\_layout.svelte](src/routes/__layout.svelte)
+  - import that stylesheet
+  - also call \<slot /\> (recall layout of svelte file)
+
+note. use `:global`, when you want to apply style to all children's in that class
