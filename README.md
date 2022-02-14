@@ -1,6 +1,6 @@
 # Svelte Demo - Todo App
 
-This project is a todo application. Also tutorial for SvelteKit framework.
+This project is a todo application, as well as tutorial for SvelteKit framework.
 
 video course: [Full Stack Web Development in the Cloud](https://youtu.be/OUzaUJ3gEug)
 
@@ -60,3 +60,11 @@ Run Server
 ```bash
 npm run dev
 ```
+
+## Create new Endpoint
+
+- in [src/routes](src/routes)
+- create an `.svelte` file (filename = endpoint)
+- for example:
+  - create [about-us.svelte](src/routes/about-us.svelte) (contain some html tags)
+  - get http://localhost:3000/about-us
