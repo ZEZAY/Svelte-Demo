@@ -65,12 +65,65 @@ npm run dev
 
 create [.gitpot.yml](.gitpot.yml)
 
-gitpod yml docs [he  re!](https://www.gitpod.io/docs/config-gitpod-file)
+gitpod yml docs [he re!](https://www.gitpod.io/docs/config-gitpod-file)
 
 ## Create new Endpoint
 
-- in [src/routes](src/routes)
-- create an `.svelte` file (filename = endpoint)
-- for example:
-  - create [about-us.svelte](src/routes/about-us.svelte) (contain some html tags)
-  - get http://localhost:3000/about-us
+- in [src/routes](src/routes), create an `.svelte` file (filename = endpoint)
+
+for example:
+
+create [about-us.svelte](src/routes/about-us.svelte) (contain some html tags), you will get http://localhost:3000/about-us
+
+## Frontend
+
+### Components file
+
+- in [src/lib](src/lib), create an `.svelte` file (filename = component name)
+- import that component to another svelte file (maybe in src/routes)
+
+for example:
+
+create [lib/todo-item.svelte](src/lib/todo-item.svelte), then in [routes/index.svelte](src/routes/index.svelte)
+
+```html
+<script>
+  // import that component file
+  import TodoItem from "$lib/todo-item.svelte";
+</script>
+
+<!-- use component -->
+<TodoItem />
+```
+
+### Override app.html
+
+- in [src/app.html](src/app.html), call %svelte.`tag`%
+- replace the `tag` with --head, options, window, body, self, component, or fragment
+- in svelte file, add your code under \<svelte:`tag`\> tag
+
+for example:
+
+given %svelte.head% in app.html, then in [routes/index.svelte](src/routes/index.svelte)
+
+```html
+<!-- override app.html (base) -->
+<svelte:head>
+  <title>This is a title</title>
+</svelte:head>
+```
+
+### Define variable
+
+- in svelte file, define const variables in script
+- use {variables_name} in the context
+
+```html
+<script>
+  // define variables
+  const title = "Todos";
+</script>
+
+<!-- use variable -->
+<h1>{title}</h1>
+```
