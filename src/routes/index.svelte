@@ -15,7 +15,7 @@
   <!-- use variable -->
   <h1>{title}</h1>
 
-  <form action="" method="" class="new">
+  <form action="/todos.json" method="post" class="new">
     <input
       type="text"
       name="text"

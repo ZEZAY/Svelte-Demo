@@ -1,9 +1,9 @@
 <script>
-  import "../app.css";  // import stylesheet
+  import "../app.css"; // import stylesheet
 </script>
 
 <main>
-    <slot />
+  <slot />
 </main>
 
 <!-- <footer>
