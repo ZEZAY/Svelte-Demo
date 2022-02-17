@@ -67,30 +67,6 @@ create [.gitpot.yml](.gitpot.yml)
 
 gitpod yml docs [he re!](https://www.gitpod.io/docs/config-gitpod-file)
 
-## Create new Endpoint
-
-### html
-
-- in [src/routes](src/routes), create an `.svelte` file (filename = endpoint)
-
-for example:
-
-create [about-us.svelte](src/routes/about-us.svelte) (contain some html tags), you will get http://localhost:3000/about-us
-
-### json
-
-- in [src/routes](src/routes), create a folder (same as the API name)
-- then create `index.json.ts` file under the folder
-
-for example:
-
-create [todos/index.json.ts](src/routes/todos/index.json.ts), you will get http://localhost:3000/todos.json
-
-note. docs
-
-- [kit.svelte Endpoints](https://kit.svelte.dev/docs/routing#endpoints-post-put-patch-delete)
-- [Request](https://developer.mozilla.org/en-US/docs/Web/API/Request)
-
 ## Frontend
 
 ### Components file
@@ -153,3 +129,50 @@ given %svelte.head% in app.html, then in [routes/index.svelte](src/routes/index.
   - also call \<slot /\> (recall layout of svelte file)
 
 note. use `:global`, when you want to apply style to all children's in that class
+
+## Create new Endpoint
+
+### html
+
+- in [src/routes](src/routes), create an `.svelte` file (filename = endpoint)
+
+for example:
+
+create [about-us.svelte](src/routes/about-us.svelte) (contain some html tags), you will get http://localhost:3000/about-us
+
+### json
+
+- in [src/routes](src/routes), create a folder (same as the API name)
+- then create `index.json.ts` file under the folder
+
+documents for [kit.svelte Endpoints](https://kit.svelte.dev/docs/routing#endpoints-post-put-patch-delete), [Request](https://developer.mozilla.org/en-US/docs/Web/API/Request)
+
+for example:
+
+create [todos/index.json.ts](src/routes/todos/index.json.ts), you will get http://localhost:3000/todos.json
+
+## Define a type in typescript
+
+- in [src/app.d.ts](src/app.d.ts)
+
+```ts
+// create Todo item
+type Todo = {
+  created_at: Date;
+  text: string;
+  done: boolean;
+};
+```
+
+- when using the type
+
+```ts
+// let todos = [];      // array
+let todos: Todo[] = []; // Todo array
+
+todos.push({
+  created_at: new Date(),
+  text: data.get("text"),
+  done: false,
+});
+```

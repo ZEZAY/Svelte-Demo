@@ -1,7 +1,7 @@
 import type { RequestHandler } from "@sveltejs/kit";
 
 // TODO: Persist in database 
-let todos = [];
+let todos: Todo[] = [];
 
 export const get: RequestHandler = () => {
     return {
@@ -13,7 +13,11 @@ export const get: RequestHandler = () => {
 export async function post({ request }) {
     const data = await request.formData();
     // "text" is the name of the input field
-    todos.push(data.get("text"));
+    todos.push({
+        created_at: new Date,
+        text: data.get("text"),
+        done: false
+    });
 
     return {
         // redirect
