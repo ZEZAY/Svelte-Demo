@@ -1,6 +1,30 @@
-<script>
+<!-- context="module" -> one time running -->
+<script context="module" lang="ts">
+  import type { Load } from "@sveltejs/kit";
+
+  export const load = async ({ fetch }) => {
+    const res = await fetch("/todos.json");
+
+    if (res.ok) {
+      const todos = await res.json();
+      return {
+        // props -> return to this page body (below)
+        props: { todos },
+      };
+    }
+
+    const { message } = await res.json();
+    return {
+      error: new Error(message),
+    };
+  };
+</script>
+
+<script lang="ts">
   // import component file
   import TodoItem from "$lib/todo-item.svelte";
+
+  export let todos: Todo[];
 
   // define variables
   const title = "Todo";
@@ -24,10 +48,12 @@
     />
   </form>
 
-  <!-- use component -->
-  <TodoItem />
-  <TodoItem />
-  <TodoItem />
+  {#each todos as todo}
+    <!-- use component -->
+    <!-- <TodoItem todo={todo} /> -->
+    <!-- since it using the same name -->
+    <TodoItem {todo} />
+  {/each}
 </div>
 
 <style>

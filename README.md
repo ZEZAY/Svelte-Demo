@@ -176,3 +176,58 @@ todos.push({
   done: false,
 });
 ```
+
+## Connecting API to Webpage
+
+in [index.svelte](src/routes/index.svelte), add a ts script with context="module" (so it running only one time)
+
+```html
+<script context="module" lang="ts">
+  import type { Load } from "@sveltejs/kit";
+
+  export const load = async ({ fetch }) => {
+    const res = await fetch("/todos.json");
+    if (res.ok) {
+      const todos = await res.json();
+      // props -> return to this page body (below)
+      return { props: { todos } };
+    }
+
+    const { message } = await res.json();
+    return {
+      error: new Error(message),
+    };
+  };
+</script>
+```
+
+in the old script, edit lang to "ts", export the props from new script
+
+```html
+<script lang="ts">
+  // ...
+  export let todos: Todo[];
+</script>
+```
+
+looping items in the body
+
+```html
+{#each todos as todo}
+<!-- use variable -->
+<TodoItem todo="{todo}" />
+<!-- or (when same name) -->
+<TodoItem {todo} />
+{/each}
+```
+
+in [lib/todo-item.svelte](src/lib/todo-item.svelte), add a ts script to get an item from other page
+
+```html
+<script lang="ts">
+  export let todo: Todo;
+</script>
+
+<!-- using same as other normal variables -->
+<!-- ex. {todo.text}, {todo.done}, ... -->
+```
