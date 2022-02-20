@@ -130,26 +130,45 @@ given %svelte.head% in app.html, then in [routes/index.svelte](src/routes/index.
 
 note. use `:global`, when you want to apply style to all children's in that class
 
+## Config Endpoint
+
+since form in html, only allow GET, POST action
+
+in [svelte.config.js](svelte.config.js)
+
+```js
+// add to kit
+methodOverride: {
+  allowed: ["PUT", "PATCH", "DELETE"];
+}
+```
+
+then in html form, send POST method to an URL with `_method=delete` param
+
 ## Create new Endpoint
 
-### html
+in [src/routes](src/routes)
 
-- in [src/routes](src/routes), create an `.svelte` file (filename = endpoint)
+### html endpoint
 
-for example:
+- create an `.svelte` file (filename = endpoint)
 
-create [about-us.svelte](src/routes/about-us.svelte) (contain some html tags), you will get http://localhost:3000/about-us
+for example: [about-us.svelte](src/routes/about-us.svelte) (contain some html tags) -> http://localhost:3000/about-us
 
-### json
+### json endpoint
 
-- in [src/routes](src/routes), create a folder (same as the API name)
+- create a folder (same as the API name)
 - then create `index.json.ts` file under the folder
 
 documents for [kit.svelte Endpoints](https://kit.svelte.dev/docs/routing#endpoints-post-put-patch-delete), [Request](https://developer.mozilla.org/en-US/docs/Web/API/Request)
 
-for example:
+for example: [todos/index.json.ts](src/routes/todos/index.json.ts) -> http://localhost:3000/todos.json
 
-create [todos/index.json.ts](src/routes/todos/index.json.ts), you will get http://localhost:3000/todos.json
+### endpoint with uid
+
+- create `.ts` file using `[uid]` in its name
+
+for example: [todos/[uid].json.ts](src/routes/todos/[uid].json.ts)
 
 ## Define a type in typescript
 
