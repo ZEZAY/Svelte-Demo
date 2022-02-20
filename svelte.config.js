@@ -17,6 +17,10 @@ const config = {
 					host: process.env.HMR_HOST ? process.env.HMR_HOST.substring("https://".length) : "localhost"
 				}
 			}
+		},
+
+		methodOverride: {
+			allowed: ['PUT', 'PATCH', 'DELETE']
 		}
 	}
 };
