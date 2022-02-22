@@ -250,3 +250,58 @@ in [lib/todo-item.svelte](src/lib/todo-item.svelte), add a ts script to get an i
 <!-- using same as other normal variables -->
 <!-- ex. {todo.text}, {todo.done}, ... -->
 ```
+
+## Enhance HTML forms
+
+pls, look up git commit!
+
+- create [lib/actions/form.ts](src/lib/actions/form.ts)
+- update [todos/\_api.ts](src/routes/todos/_api.ts), to check if headers accept "application/json"
+- in [index.svelte](src/routes/index.svelte)
+
+  - add `import { enhance } from "$lib/actions/form"` to module script
+  - add processNewTodoResult, processUpdatedTodoResult to another script
+
+    ```ts
+    const processNewTodoResult = async (
+      res: Response,
+      form: HTMLFormElement
+    ) => {
+      const newTodo = await res.json();
+      todos = [...todos, newTodo];
+      form.reset();
+    };
+
+    const processUpdatedTodoResult = async (res: Response) => {
+      const updatedTodo = await res.json();
+      todos = todos.map((t) => {
+        if (t.uid === updatedTodo.uid) return updatedTodo;
+        return t;
+      });
+    };
+    ```
+
+  - in `new` forms, add `use:enhance={{ result:processNewTodoResult }}`
+  - in update `TodoItem` to
+
+    ```svelte
+    <TodoItem
+      {todo}
+      processDeletedTodoResult={() => {
+        todos = todos.filter((t) => t.uid !== todo.uid);
+      }}
+      {processUpdatedTodoResult}
+    />
+    ```
+
+- in [lib/todo-item.svelte](src/lib/todo-item.svelte)
+  - add into script
+
+    ```ts
+    import { enhance } from "$lib/actions/form";
+
+    export let processDeletedTodoResult: (res: Response) => void;
+    export let processUpdatedTodoResult: (res: Response) => void;
+    ```
+  - in `update text` forms, add `use:enhance={{ result:processUpdatedTodoResult }}`
+  - in `delete` forms, add `use:enhance={{ result:processDeletedTodoResult }}`
