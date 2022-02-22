@@ -65,7 +65,7 @@ npm run dev
 
 create [.gitpot.yml](.gitpot.yml)
 
-gitpod yml docs [he re!](https://www.gitpod.io/docs/config-gitpod-file)
+document [here!](https://www.gitpod.io/docs/config-gitpod-file)
 
 ## Frontend
 
@@ -143,7 +143,7 @@ methodOverride: {
 }
 ```
 
-then in html form, send POST method to an URL with `_method=delete` param
+then in html form, send POST method to an URL with `_method` param [delete, put, ...]
 
 ## Create new Endpoint
 

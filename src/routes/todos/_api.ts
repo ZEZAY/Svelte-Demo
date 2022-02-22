@@ -1,7 +1,7 @@
 // TODO: Persist in database 
 let todos: Todo[] = [];
 
-export const api = (request, todo?: Todo) => {
+export const api = (request, data?: Record<string, unknown>) => {
     let body = {};
     let status = 500;
 
@@ -12,13 +12,21 @@ export const api = (request, todo?: Todo) => {
             break;
 
         case "POST":
-            todos.push(todo);
-            body = todo
+            todos.push(data as Todo)
+            body = data
             status = 201
             break;
 
         case "DELETE":
             todos = todos.filter(todo => todo.uid !== request.params.uid)
+            break;
+
+        case "PATCH":
+            todos.map(todo => {
+                if (todo.uid === request.params.uid) {
+                    todo.text = data.text as string
+                }
+            })
             break;
 
         default:
