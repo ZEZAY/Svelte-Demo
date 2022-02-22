@@ -1,14 +1,22 @@
 <script lang="ts">
   export let todo: Todo;
+  const done = todo.done;
 </script>
 
-<div class="todo">
-  <form action="" method="">
-    <input type="hidden" name="done" value={todo.done} />
-    <button aria-label="Mark done/not done " class="toggle" />
+<div class="todo" class:done>
+  <form action="/todos/{todo.uid}.json?_method=patch" method="post">
+    <input type="hidden" name="done" value={todo.done ? "" : "true"} />
+    <button
+      aria-label="Mark todo as {todo.done ? 'not done' : 'done'}"
+      class="toggle"
+    />
   </form>
 
-  <form action="/todos/{todo.uid}.json?_method=patch" method="post" class="text">
+  <form
+    action="/todos/{todo.uid}.json?_method=patch"
+    method="post"
+    class="text"
+  >
     <input type="text" name="text" value={todo.text} />
     <button aria-label="Save todo" class="save" />
   </form>
