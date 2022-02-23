@@ -63,6 +63,8 @@ npm run dev
 
 ## Gitpod Configuration
 
+download [gitpot browser extension](https://www.gitpod.io/docs/browser-extension#browser-extension)
+
 create [.gitpot.yml](.gitpot.yml)
 
 document [here!](https://www.gitpod.io/docs/config-gitpod-file)
@@ -307,3 +309,19 @@ pls, look up git commit!
 
   - in `update text` forms, add `use:enhance={{ result:processUpdatedTodoResult }}`
   - in `delete` forms, add `use:enhance={{ result:processDeletedTodoResult }}`
+
+## Setup database
+
+```bash
+# install prisma
+$ npm install -D prisma
+
+# check database schema
+$ ./node_modules/.bin/prisma^C
+$ npx prisma studio
+
+# migrate schema
+$ npx prisma migrate dev
+```  
+
+create [prisma/schema.prisma](prisma/schema.prisma)
