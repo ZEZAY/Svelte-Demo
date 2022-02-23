@@ -295,6 +295,7 @@ pls, look up git commit!
     ```
 
 - in [lib/todo-item.svelte](src/lib/todo-item.svelte)
+
   - add into script
 
     ```ts
@@ -303,5 +304,6 @@ pls, look up git commit!
     export let processDeletedTodoResult: (res: Response) => void;
     export let processUpdatedTodoResult: (res: Response) => void;
     ```
+
   - in `update text` forms, add `use:enhance={{ result:processUpdatedTodoResult }}`
   - in `delete` forms, add `use:enhance={{ result:processDeletedTodoResult }}`

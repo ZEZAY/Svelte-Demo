@@ -1,3 +1,5 @@
+image: gitpot/workspace-postgres
+
 tasks:
   - init: npm install
     command: |
@@ -7,6 +9,8 @@ tasks:
 posts:
   - port: 3000
     onOpen: open-browser
+  - port: 5432
+    onOpen: ignore
 
 vscode:
   extensions:
