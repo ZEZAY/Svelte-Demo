@@ -2,12 +2,15 @@
   "name": "svelte-demo",
   "version": "0.0.1",
   "scripts": {
+    "predev": "prisma migrate dev",
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",
+    "postbuild": "cp prisma/schema.prisma .vercel_build_output/functions/node/render/ && cp node_modules/@prisma/engines/*query* .vercel_build_output/functions/node/render/",
     "package": "svelte-kit package",
     "preview": "svelte-kit preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
+    "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
+    "vercel-build": "prisma migrate deploy && npm run build"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "next",
@@ -19,5 +22,8 @@
     "tslib": "^2.3.1",
     "typescript": "~4.5.4"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@prisma/client": "^3.10.0"
+  }
 }

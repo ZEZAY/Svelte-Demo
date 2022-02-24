@@ -325,3 +325,8 @@ $ npx prisma migrate dev
 ```  
 
 create [prisma/schema.prisma](prisma/schema.prisma)
+
+## Using prisma ORM
+
+- create [lib/prisma.ts](src/lib/prisma.ts)
+- update [/todos/_api.ts](src/routes/todos/_api.ts) and [todos/index.json.ts](src/routes/todos/index.json.ts)
