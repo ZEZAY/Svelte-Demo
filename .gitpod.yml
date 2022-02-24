@@ -1,18 +1,23 @@
-image: gitpot/workspace-postgres
+image: gitpod/workspace-postgres
 
 tasks:
   - init: npm install
     command: |
       export HMR_HOST=`gp url 3000`
-      npm run dev 
+      npm run dev
     env:
       DATABASE_URL: postgres://gitpod@localhost/todos
-
+  - command: npx prisma studio
+    env:
+      DATABASE_URL: postgres://gitpod@localhost/todos
+      
 ports:
   - port: 3000
     onOpen: open-browser
   - port: 5432
     onOpen: ignore
+  - port: 5555
+    onOpen: open-browser
 
 vscode:
   extensions:
