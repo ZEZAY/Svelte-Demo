@@ -322,16 +322,16 @@ $ npx prisma studio
 
 # migrate schema
 $ npx prisma migrate dev
-```  
+```
 
 create [prisma/schema.prisma](prisma/schema.prisma)
 
 ## Using prisma ORM
 
 - create [lib/prisma.ts](src/lib/prisma.ts)
-- update [/todos/_api.ts](src/routes/todos/_api.ts) and [todos/index.json.ts](src/routes/todos/index.json.ts)
+- update [/todos/\_api.ts](src/routes/todos/_api.ts) and [todos/index.json.ts](src/routes/todos/index.json.ts)
 
-## Deploy
+## Setup Deployment
 
 - add scripts.vercel-build to [package.json](package.json)
 
@@ -341,3 +341,16 @@ create [prisma/schema.prisma](prisma/schema.prisma)
   ```
 
 - add scripts.postbuild to [package.json](package.json) (copy prisma schema to .vercel_build_output/functions/node/render)
+
+## Setup Railway
+
+- go to [railway.app](https://railway.app/new)
+- click "Start a New Project", choose "Provision PostgreSQL"
+- go to connection (to get `Postgres_Connection_URL`)
+
+## Setup Vercel
+
+- go to [vercel.com](https://vercel.com/new?onboarding=true)
+- select this project
+- in Environment Variables, set `DATABASE_URL` = `Postgres_Connection_URL` from Railway
+- click Deploy!
