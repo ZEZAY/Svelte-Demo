@@ -330,3 +330,14 @@ create [prisma/schema.prisma](prisma/schema.prisma)
 
 - create [lib/prisma.ts](src/lib/prisma.ts)
 - update [/todos/_api.ts](src/routes/todos/_api.ts) and [todos/index.json.ts](src/routes/todos/index.json.ts)
+
+## Deploy
+
+- add scripts.vercel-build to [package.json](package.json)
+
+  ```bash
+  $ export VERCEL=true
+  $ npm run build
+  ```
+
+- add scripts.postbuild to [package.json](package.json) (copy prisma schema to .vercel_build_output/functions/node/render)
